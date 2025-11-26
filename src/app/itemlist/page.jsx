@@ -7,10 +7,10 @@ const Page = () =>{
   const [products, setProducts] = useState([]);
 
   useEffect(() =>{
-    fetch("http://localhost:5000/mart")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("API Error:", err))
+   fetch("https://mart-bd-server.vercel.app/mart")
+     .then((res) => res.json())
+     .then((data) => setProducts(data))
+     .catch((err) => console.error("API Error:", err));
   }, [])
 
   return (

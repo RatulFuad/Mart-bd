@@ -6,35 +6,35 @@ import { toast } from "react-toastify";
 
 export default function AddProductPage() {
 
-  const handleSubmit = (e)=>{
-    
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     const formData = {
       Title: e.target.Title.value,
       ShortDescription: e.target.ShortDescription.value,
       FullDescription: e.target.FullDescription.value,
       Price: e.target.Price.value,
-      Date: e.target.Date.value
-    }
+      Date: e.target.Date.value,
+    };
 
-    fetch('http://localhost:5000/mart',{
+    fetch("https://mart-bd-server.vercel.app/mart", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      toast.success("Product added successfully!");
-      e.target.reset();
-    })
-    .catch(err => {
-      confirm.log(err)
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Product added successfully!");
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.error(err); 
+      });
+  };
 
 
 

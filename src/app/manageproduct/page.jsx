@@ -10,10 +10,10 @@ const page = () => {
     const [products, setProducts] = useState([]);
   
     useEffect(() =>{
-      fetch("http://localhost:5000/mart")
-        .then((res) => res.json())
-        .then((data) => setProducts(data))
-        .catch((err) => console.error("API Error:", err))
+fetch("https://mart-bd-server.vercel.app/mart")
+  .then((res) => res.json())
+  .then((data) => setProducts(data))
+  .catch((err) => console.error("API Error:", err));
     }, [])
 
 const handleDelete = (_id) => {
@@ -27,7 +27,7 @@ const handleDelete = (_id) => {
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:5000/mart/${_id}`, {
+      fetch(`https://mart-bd-server.vercel.app/mart/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

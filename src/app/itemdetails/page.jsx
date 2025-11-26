@@ -12,7 +12,7 @@ export default function DetailsPage() {
 
   useEffect(() =>{
     if (id) {
-      fetch(`http://localhost:5000/mart/${id}`)
+      fetch(`https://mart-bd-server.vercel.app/mart?id=${id}`)
         .then((res) => res.json())
         .then((data) => setProduct(data.result))
         .catch((err) => console.error(err))
