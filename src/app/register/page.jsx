@@ -1,58 +1,54 @@
 "use client";
 
-import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { useState } from "react"
+import { useAuth } from "@/hooks/useAuth"
+import { useRouter } from "next/navigation"
 import Link from "next/link";
 
 export default function RegisterPage() {
-  const { createUser, googleLogin, user, setUser } = useAuth();
-  const [error, setError] = useState("");
+  const { createUser, googleLogin, user, setUser } = useAuth()
+  const [error, setError] = useState("")
   const router = useRouter();
 
-  // Email/Password register
-  const handleRegister = async (e) => {
+  const handleRegister = async (e) =>{
     e.preventDefault();
     setError("");
 
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const password = form.password.value;
+    const password = form.password.value
 
-    if (password.length < 6) {
+    if (password.length < 6){
       setError("Password must be at least 6 characters!");
-      return;
+      return
     }
 
     try {
-      const result = await createUser(email, password);
-      // update displayName in Firebase user
-      await result.user.updateProfile({ displayName: name });
+      const result = await createUser(email, password)
+      await result.user.updateProfile({ displayName: name })
       setUser(result.user);
       form.reset();
-      router.push("/"); // redirect home
+      router.push("/")
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
     }
   };
 
-  // Google register/login
-  const handleGoogle = async () => {
+  const handleGoogle = async () =>{
     setError("");
     try {
-      const result = await googleLogin();
+      const result = await googleLogin()
       setUser(result.user);
-      router.push("/"); // redirect home
+      router.push("/")
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // If already logged in → redirect home
   if (user) {
-    router.push("/");
-    return null;
+    router.push("/")
+    return null
   }
 
   return (

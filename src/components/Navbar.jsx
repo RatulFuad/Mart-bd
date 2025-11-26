@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
-import React from "react";
-import { useAuth } from "@/hooks/useAuth";
+import Link from "next/link"
+import React from "react"
+import { useAuth } from "@/hooks/useAuth"
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -40,15 +40,23 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <Link href="/">Home</Link>
             </li>
 
             <li>
-              <a>Item 3</a>
+              <Link href="/itemlist">Item List</Link>
+            </li>
+            <li>
+              <Link href="/addproduct">Add Product</Link>
+            </li>
+            <li>
+              <Link href="/manageproduct">Manage Product</Link>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <img src="/mart-bd-removebg-preview.png" alt="Logo" className="h-12" />
+
+        <a className="btn btn-ghost text-xl">MART-BD</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -71,14 +79,14 @@ const Navbar = () => {
         {user ? (
           <button
             onClick={handleLogout}
-            className="bg-red-500 px-4 py-1 rounded hover:bg-red-600"
+            className=" font-bold px-4 py-1 rounded btn bg-black text-white"
           >
             Logout
           </button>
         ) : (
           <Link
             href="/login"
-            className="bg-blue-500 px-4 py-1 rounded hover:bg-blue-600"
+            className="text-white  btn bg-black font-bold  px-4 py-1 rounded "
           >
             Login
           </Link>
